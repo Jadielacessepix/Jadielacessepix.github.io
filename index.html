@@ -84,6 +84,15 @@
         button:hover {
             background-color: #0056b3; /* Cor de fundo ao passar o mouse (azul escuro) */
         }
+
+        /* Estilo do ícone do WhatsApp */
+        .whatsapp-icon {
+            position: fixed; /* Fixa o ícone na tela */
+            right: 20px; /* Distância do lado direito */
+            bottom: 20px; /* Distância do fundo */
+            width: 60px; /* Largura do ícone */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        }
     </style>
 </head>
 <body>
@@ -138,6 +147,8 @@
             </div>
         </div>
     </main>
+    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" class="whatsapp-icon" onclick="window.open('https://wa.me/75999877095', '_blank')"> <!-- Ícone do WhatsApp -->
+    
     <script>
         // Função para COPIAR CHAVE PIX texto para a área de transferência
         function copyText(text) {
