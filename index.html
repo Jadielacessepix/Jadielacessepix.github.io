@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif; /* Fonte padrão */
             margin: 0; /* Remove margens padrão */
             padding: 0; /* Remove preenchimento padrão */
-            background-image: url('background.jpg'); /* Caminho da imagem de fundo */
+            background-image: url('fundo.png'); /* Caminho da imagem de fundo */
             background-size: cover; /* Faz com que a imagem cubra toda a tela */
             background-position: center; /* Centraliza a imagem de fundo */
             color: white; /* Cor do texto principal */
@@ -86,12 +86,18 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Logo da Empresa" class="logo"> <!-- Caminho da sua logo -->
-        <img src="logo.gif" alt="GIF Animado" class="gif"> <!-- Caminho do seu GIF -->
+        <img src="logo.gif" alt="GIF Animado" class="gif"> <!-- Mantém apenas o GIF -->
     </header>
     <main>
         <div class="container">
-            <!-- Cada caixa de texto com título -->
+            <!-- Nova caixa acima da caixa de $2,50 -->
+            <div class="box">
+                <p class="box-title">SEJA BEM-VINDO (A) AO SITE JADIELACESSEPIX.</p>
+                                <p class="box-title">OLÁ, SEJA BEM-VINDO AO SITE JADIEL ACESSE PIX, ONDE VOCÊ VAI PEGAR A CHAVE PIX PARA FAZER O PAGAMENTO DO SORTEIO DA TORTA SALGADA. SE VOCÊ QUISER VER O BILHETE, É SÓ APERTAR O BOTÃO ABAIXO. AÍ VOCÊ PODE VISUALIZAR A IMAGEM DO BILHETE.</p>
+                <button onclick="showImage()">MOSTRAR IMAGEM</button> <!-- Novo botão -->
+                <img id="newImage" src="bilhete.png" alt="Imagem" style="display:none; width: 200px; margin-top: 10px;"> <!-- Imagem oculta inicialmente -->
+            </div>
+            <!-- Caixa existente de $2,50 -->
             <div class="box">
                 <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
                 <p class="box-title">$2,50</p>
@@ -128,11 +134,6 @@
                 <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540520.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605223kUensGAr8pu9EsUeeevfA6304EA73</p>
                 <button onclick="copyText('Texto da Caixa 6')">COPIAR CHAVE PIX</button>
             </div>
-                        <div class="box">
-                <p class="box-title">Título 6</p>
-                <p class="box-text">Texto da Caixa 6</p>
-                <button onclick="copyText('Texto da Caixa 6')">COPIAR CHAVE PIX</button>
-            </div>
         </div>
     </main>
     <script>
@@ -141,6 +142,11 @@
             navigator.clipboard.writeText(text).then(() => {
                 alert('Texto copiado: ' + text); // Alerta de confirmação
             });
+        }
+
+        // Função para mostrar a imagem
+        function showImage() {
+            document.getElementById('newImage').style.display = 'block'; // Exibe a imagem
         }
     </script>
 </body>
