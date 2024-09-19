@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Profissional</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            font-family: Arial, sans-serif; /* Fonte padrão */
+            margin: 0; /* Remove margens padrão */
+            padding: 0; /* Remove preenchimento padrão */
+            background-image: url('background.jpg'); /* Caminho da imagem de fundo */
+            background-size: cover; /* Faz com que a imagem cubra toda a tela */
+            background-position: center; /* Centraliza a imagem de fundo */
+            color: white; /* Cor do texto principal */
+        }
+
+        /* Estilo do cabeçalho */
+        header {
+            text-align: center; /* Centraliza o conteúdo do cabeçalho */
+            padding: 20px; /* Espaçamento interno */
+            background-color: #ffffff; /* Fundo semitransparente para contraste */
+        }
+
+        /* Estilo da logo */
+        .logo {
+            width: 150px; /* Ajuste o tamanho da logo conforme necessário */
+        }
+
+        /* Estilo do GIF */
+        .gif {
+            width: 200px; /* Ajuste o tamanho do GIF conforme necessário */
+            margin: 10px 0; /* Espaçamento acima e abaixo do GIF */
+        }
+
+        /* Estilo do contêiner das caixas */
+        .container {
+            display: flex; /* Flexbox para layout responsivo */
+            flex-wrap: wrap; /* Permite que as caixas se movam para a próxima linha */
+            justify-content: space-around; /* Espaça as caixas uniformemente */
+            padding: 20px; /* Espaçamento interno ao redor do contêiner */
+        }
+
+        /* Estilo das caixas de texto */
+        .box {
+            border: 2px solid #30FF9A; /* Cor da borda (verde) */
+            border-radius: 5px; /* Bordas arredondadas */
+            padding: 10px; /* Espaçamento interno das caixas */
+            margin: 10px; /* Espaçamento externo das caixas */
+            width: 200px; /* Largura fixa das caixas */
+            text-align: center; /* Centraliza o texto dentro das caixas */
+            background-color: #FFFFFF; /* Fundo branco para as caixas */
+        }
+
+        /* Estilo do título acima das caixas */
+        .box-title {
+            color: #30FF9A; /* Cor do texto do título (verde) */
+            font-weight: bold; /* Negrito */
+            margin-bottom: 5px; /* Espaçamento abaixo do título */
+        }
+
+        /* Estilo do texto dentro das caixas */
+        .box-text {
+            color: #00FF13; /* Cor do texto dentro das caixas (verde claro) */
+            margin: 5px 0; /* Espaçamento acima e abaixo do texto */
+            overflow-wrap: break-word; /* Quebra de linha para texto longo */
+            text-align: center; /* Centraliza o texto */
+        }
+
+        /* Estilo dos botões */
+        button {
+            background-color: #30FF9A; /* Cor de fundo do botão (verde) */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remove a borda padrão */
+            padding: 10px; /* Espaçamento interno do botão */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            border-radius: 5px; /* Bordas arredondadas do botão */
+        }
+
+        /* Estilo do botão ao passar o mouse */
+        button:hover {
+            background-color: #0056b3; /* Cor de fundo ao passar o mouse (azul escuro) */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo da Empresa" class="logo"> <!-- Caminho da sua logo -->
+        <img src="animation.gif" alt="GIF Animado" class="gif"> <!-- Caminho do seu GIF -->
+    </header>
+    <main>
+        <div class="container">
+            <!-- Cada caixa de texto com título -->
+            <div class="box">
+                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
+                <p class="box-title">$2,50</p>
+                <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654042.505802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605227hAwzwA7rVi29Gd5SzoFXL6304DB24</p>
+                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654042.505802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605227hAwzwA7rVi29Gd5SzoFXL6304DB24')">COPIAR CHAVE PIX</button>
+            </div>
+            <div class="box">
+                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
+                <p class="box-title">$5,0</p>
+                <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654045.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605223IME113X77fPubwUMJdMvK630495FE</p>
+                <button onclick="copyText('Texto da Caixa 2')">COPIAR CHAVE PIX</button>
+            </div>
+            <div class="box">
+                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
+                <p class="box-title">$7,50</p>
+                <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654047.505802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605224MfBun3PaPraQvlpXNyDiu6304F8F3</p>
+                <button onclick="copyText('Texto da Caixa 3')">COPIAR CHAVE PIX</button>
+            </div>
+            <div class="box">
+                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
+                <p class="box-title">$10,0</p>
+                <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540510.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605224QngYxWtevJREVOpmzC4Eg6304F8D6</p>
+                <button onclick="copyText('Texto da Caixa 4')">COPIAR CHAVE PIX</button>
+            </div>
+            <div class="box">
+                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
+                <p class="box-title">#15,0</p>
+                <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540515.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605226tCSlRMh6zJqs0rFZNvBr0630448FB</p>
+                <button onclick="copyText('Texto da Caixa 5')">COPIAR CHAVE PIX</button>
+            </div>
+            <div class="box">
+                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
+                <p class="box-title">$20,0</p>
+                <p class="box-text">00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540520.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605223kUensGAr8pu9EsUeeevfA6304EA73</p>
+                <button onclick="copyText('Texto da Caixa 6')">COPIAR CHAVE PIX</button>
+            </div>
+                        <div class="box">
+                <p class="box-title">Título 6</p>
+                <p class="box-text">Texto da Caixa 6</p>
+                <button onclick="copyText('Texto da Caixa 6')">COPIAR CHAVE PIX</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Função para COPIAR CHAVE PIX texto para a área de transferência
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Texto copiado: ' + text); // Alerta de confirmação
+            });
+        }
+    </script>
+</body>
+</html>
