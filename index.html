@@ -13,6 +13,8 @@
             background-image: url('fundo.png'); /* Caminho da imagem de fundo */
             background-size: cover; /* Faz com que a imagem cubra toda a tela */
             background-position: center; /* Centraliza a imagem de fundo */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            min-height: 100vh; /* Garante que o fundo cubra toda a altura da tela */
             color: white; /* Cor do texto principal */
         }
 
@@ -93,7 +95,7 @@
             <!-- Nova caixa acima da caixa de $2,50 -->
             <div class="box">
                 <p class="box-title">SEJA BEM-VINDO (A) AO SITE JADIELACESSEPIX.</p>
-                                <p class="box-title">OLÁ, SEJA BEM-VINDO AO SITE JADIEL ACESSE PIX, ONDE VOCÊ VAI PEGAR A CHAVE PIX PARA FAZER O PAGAMENTO DO SORTEIO DA TORTA SALGADA. SE VOCÊ QUISER VER O BILHETE, É SÓ APERTAR O BOTÃO ABAIXO. AÍ VOCÊ PODE VISUALIZAR A IMAGEM DO BILHETE.</p>
+                <p class="box-title">OLÁ, SEJA BEM-VINDO AO SITE JADIEL ACESSE PIX, ONDE VOCÊ VAI PEGAR A CHAVE PIX PARA FAZER O PAGAMENTO DO SORTEIO DA TORTA SALGADA. SE VOCÊ QUISER VER O BILHETE, É SÓ APERTAR O BOTÃO ABAIXO. AÍ VOCÊ PODE VISUALIZAR A IMAGEM DO BILHETE.</p>
                 <button onclick="showImage()">MOSTRAR IMAGEM</button> <!-- Novo botão -->
                 <img id="newImage" src="bilhete.png" alt="Imagem" style="display:none; width: 200px; margin-top: 10px;"> <!-- Imagem oculta inicialmente -->
             </div>
