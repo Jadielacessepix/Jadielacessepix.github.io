@@ -3,151 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadiel acesse pix</title>
+    <title>Bate-papodeconversa</title>
+    <script type="module" src="script.js"></script>
     <style>
-        /* Estilo geral da página */
         body {
-            font-family: Arial, sans-serif; /* Fonte padrão */
-            margin: 0; /* Remove margens padrão */
-            padding: 0; /* Remove preenchimento padrão */
-            background-color:#A4FF03; /* Caminho da imagem de fundo */
-            background-size: cover; /* Faz com que a imagem cubra toda a tela */
-            background-position: center; /* Centraliza a imagem de fundo */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            min-height: 100vh; /* Garante que o fundo cubra toda a altura da tela */
-            color: white; /* Cor do texto principal */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
         }
-
-        /* Estilo do cabeçalho */
-        header {
-            text-align: center; /* Centraliza o conteúdo do cabeçalho */
-            padding: 20px; /* Espaçamento interno */
-            background-color: #A4FF03; /* Fundo semitransparente para contraste */
-        }
-
-        /* Estilo do GIF */
-        .gif {
-            width: 300px; /* Ajuste o tamanho do GIF conforme necessário */
-            margin: 10px 0; /* Espaçamento acima e abaixo do GIF */
-        }
-
-        /* Estilo do contêiner das caixas */
-        .container {
-            display: flex; /* Flexbox para layout responsivo */
-            flex-wrap: wrap; /* Permite que as caixas se movam para a próxima linha */
-            justify-content: space-around; /* Espaça as caixas uniformemente */
-            padding: 20px; /* Espaçamento interno ao redor do contêiner */
-        }
-
-        /* Estilo das caixas de texto */
-        .box {
-            border: 2px solid #30FF9A; /* Cor da borda (verde) */
-            border-radius: 5px; /* Bordas arredondadas */
-            padding: 10px; /* Espaçamento interno das caixas */
-            margin: 10px; /* Espaçamento externo das caixas */
-            width: 200px; /* Largura fixa das caixas */
-            text-align: center; /* Centraliza o texto dentro das caixas */
-            background-color: #FFFFFF; /* Fundo branco para as caixas */
-        }
-
-        /* Estilo do título acima das caixas */
-        .box-title {
-            color: #30FF9A; /* Cor do texto do título (verde) */
-            font-weight: bold; /* Negrito */
-            margin-bottom: 5px; /* Espaçamento abaixo do título */
-        }
-
-        /* Estilo dos botões */
         button {
-            background-color: #30FF9A; /* Cor de fundo do botão (verde) */
-            color: white; /* Cor do texto do botão */
-            border: none; /* Remove a borda padrão */
-            padding: 10px; /* Espaçamento interno do botão */
-            cursor: pointer; /* Muda o cursor para indicar que é clicável */
-            border-radius: 5px; /* Bordas arredondadas do botão */
-            margin-top: 10px; /* Espaçamento acima do botão */
-        }
-
-        /* Estilo do botão ao passar o mouse */
-        button:hover {
-            background-color: #0056b3; /* Cor de fundo ao passar o mouse (azul escuro) */
-        }
-
-        /* Estilo do ícone do WhatsApp */
-        .whatsapp-icon {
-            position: fixed; /* Fixa o ícone na tela */
-            right: 20px; /* Distância do lado direito */
-            bottom: 20px; /* Distância do fundo */
-            width: 60px; /* Largura do ícone */
-            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.gif" alt="GIF Animado" class="gif"> <!-- Mantém apenas o GIF -->
-    </header>
-    <main>
-        <div class="container">
-            <!-- Nova caixa acima da caixa de $2,50 -->
-            <div class="box">
-                <p class="box-title">SEJA BEM-VINDO (A) AO SITE JADIELACESSEPIX.</p>
-                <p class="box-title">OLÁ, SEJA BEM-VINDO AO SITE JADIEL ACESSE PIX, ONDE VOCÊ VAI PEGAR A CHAVE PIX PARA FAZER O PAGAMENTO DO SORTEIO DA TORTA SALGADA. SE VOCÊ QUISER VER O BILHETE, É SÓ APERTAR O BOTÃO ABAIXO. AÍ VOCÊ PODE VISUALIZAR A IMAGEM DO BILHETE.</p>
-                <button onclick="showImage()">MOSTRAR IMAGEM</button> <!-- Novo botão -->
-                <img id="newImage" src="bilhete.png" alt="Imagem" style="display:none; width: 200px; margin-top: 10px;"> <!-- Imagem oculta inicialmente -->
-            </div>
-            <!-- Caixa existente de $2,50 -->
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">$2,50</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654042.505802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605227hAwzwA7rVi29Gd5SzoFXL6304DB24')">COPIAR CHAVE PIX</button>
-            </div>
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">$5,0</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654045.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605223IME113X77fPubwUMJdMvK630495FE')">COPIAR CHAVE PIX</button>
-            </div>
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">$7,50</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada52040000530398654047.505802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605224MfBun3PaPraQvlpXNyDiu6304F8F3')">COPIAR CHAVE PIX</button>
-            </div>
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">$10,0</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540510.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605224QngYxWtevJREVOpmzC4Eg6304F8D6')">COPIAR CHAVE PIX</button>
-            </div>
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">#15,0</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540515.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605226tCSlRMh6zJqs0rFZNvBr0630448FB')">COPIAR CHAVE PIX</button>
-            </div>
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">$20,0</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540520.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605223kUensGAr8pu9EsUeeevfA6304EA73')">COPIAR CHAVE PIX</button>
-            </div>
-            <div class="box">
-                <p class="box-title">VALOR DO PIX ABAIXO DO SORTEIO DA TORTA.</p>
-                <p class="box-title">$20,0</p>
-                <button onclick="copyText('00020126860014BR.GOV.BCB.PIX0136b4b6e8bb-581b-49da-8db3-0c66c1c61ab60224sorteio da torta salgada520400005303986540520.005802BR5925JADIEL DOS SANTOS RIBEIRO6009SAO PAULO622605223kUensGAr8pu9EsUeeevfA6304EA73')">COPIAR CHAVE PIX</button>
-            </div>
-        </div>
-    </main>
-    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" class="whatsapp-icon" onclick="window.open('https://wa.me/75999877095', '_blank')"> <!-- Ícone do WhatsApp -->
-    
+    <h1>Bem-vindo ao Bate-papodeconversa!</h1>
+    <div id="user-info" style="display: none;">
+        <h2>Usuário Logado:</h2>
+        <p id="user-name"></p>
+        <button onclick="logout()">Sair</button>
+    </div>
+    <div id="login-area">
+        <button onclick="login()">Entrar com Google</button>
+    </div>
     <script>
-        // Função para COPIAR CHAVE PIX texto para a área de transferência
-        function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Texto copiado: ' + text); // Alerta de confirmação
-            });
-        }
-
-        // Função para mostrar a imagem
-        function showImage() {
-            document.getElementById('newImage').style.display = 'block'; // Exibe a imagem
-        }
+        // O código JavaScript para autenticação com Firebase vai aqui
     </script>
 </body>
 </html>
