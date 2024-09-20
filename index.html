@@ -3,105 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bate-papodeconversa</title>
+    <title>Terminal do Bot do Telegram</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+        #terminal {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
         }
-        #user-info {
-            margin-top: 20px;
-        }
-        #user-info img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 10px;
         }
     </style>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+</head>
+<body>
+    <h1>Terminal do Bot do Telegram</h1>
+    <div id="terminal"></div>
+    <input type="text" id="commandInput" placeholder="Digite seu comando"/>
+    <script>
+        const terminal = document.getElementById('terminal');
+        const commandInput = document.getElementById('commandInput');
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDGv_8JszhIi8UWFl7T-lLdJ7aiavY4Chk",
-            authDomain: "chatdeconversa-d7157.firebaseapp.com",
-            projectId: "chatdeconversa-d7157",
-            storageBucket: "chatdeconversa-d7157.appspot.com",
-            messagingSenderId: "903498795104",
-            appId: "1:903498795104:web:ff596048061101702b5b05",
-            measurementId: "G-XVL479WP0Y"
-        };
+        commandInput.addEventListener('keypress', async function(event) {
+            if (event.key === 'Enter') {
+                const command = commandInput.value;
+                terminal.innerText += `> ${command}\n`;
+                commandInput.value = '';
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const auth = getAuth(app);
-
-        // Function to handle Google sign-in
-        window.login = function() {
-            const provider = new GoogleAuthProvider();
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    const user = result.user;
-                    console.log("Usuário logado: ", user);
-                })
-                .catch((error) => {
-                    console.error("Erro ao fazer login: ", error);
+                const response = await fetch('/send-command', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ command: command })
                 });
-        };
 
-        // Function to handle logout
-        window.logout = function() {
-            signOut(auth).then(() => {
-                console.log("Usuário deslogado.");
-            }).catch((error) => {
-                console.error("Erro ao deslogar: ", error);
-            });
-        };
-
-        // Monitorar o estado de autenticação
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log("Usuário está logado: ", user);
-                // Atualizar a interface do usuário
-                document.getElementById("user-info").style.display = "block";
-                document.getElementById("login-area").style.display = "none";
-                
-                // Preencher as informações do usuário
-                document.getElementById("user-name").innerText = user.displayName; // Nome do usuário
-                document.getElementById("user-email").innerText = user.email; // Email do usuário
-                document.getElementById("user-photo").src = user.photoURL; // Foto do usuário
-            } else {
-                console.log("Usuário não está logado");
-                // Ocultar informações do usuário
-                document.getElementById("user-info").style.display = "none";
-                document.getElementById("login-area").style.display = "block";
+                const data = await response.json();
+                terminal.innerText += `Bot: ${data.message}\n`;
+                terminal.scrollTop = terminal.scrollHeight; // Rolagem automática
             }
         });
     </script>
-</head>
-<body>
-    <h1>Bem-vindo ao Bate-papodeconversa!</h1>
-    
-    <div id="login-area">
-        <button onclick="login()">Entrar com Google</button>
-    </div>
-    
-    <div id="user-info" style="display: none;">
-        <h2>Usuário Logado:</h2>
-        <img id="user-photo" src="" alt="Foto do Usuário" />
-        <p id="user-name"></p>
-        <p id="user-email"></p>
-        <button onclick="logout()">Sair</button>
-    </div>
 </body>
 </html>
