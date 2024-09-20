@@ -153,19 +153,16 @@
             const chavePix = 'b4b6e8bb-581b-49da-8db3-0c66c1c61ab6'; // Chave PIX para pagamento
             const quantidade = document.getElementById('quantidade').value; // Obtém a quantidade de bilhetes
             const total = (quantidade * valorBilhete).toFixed(2); // Calcula o total
-            
+           
             // Exibe a chave PIX e a mensagem de pagamento
             document.getElementById('chave-pix').innerText = `CHAVE PIX: ${chavePix}`;
             document.getElementById('mensagem-pix').innerText = "Por favor, utilize a chave acima para realizar o pagamento.";
             document.getElementById('pix-info').style.display = 'block'; // Mostra a seção de informações do PIX
-
-            // Atualiza o total no painel
-            document.getElementById('valor-total').innerText = `Total: R$ ${total}`;
         }
 
         // Função para copiar a chave PIX para a área de transferência
         function copiarChavePix() {
-            const chavePix = document.getElementById('chave-pix').innerText.replace('CHAVE PIX: ', ''); // Obtém a chave PIX
+            const chavePix = document.getElementById('chave-pix').innerText.replace('Chave PIX: ', ''); // Obtém a chave PIX
             navigator.clipboard.writeText(chavePix).then(() => {
                 alert('Chave PIX copiada para a área de transferência!'); // Alerta de sucesso
             }).catch(err => {
@@ -223,14 +220,14 @@
     <button style="margin-top: 10px;" onclick="mostrarImagem()">Mostrar Imagem</button>
     
     <div class="imagem-container" id="imagem-container">
-        <img src="bilhete.png" alt="Imagem do Sorteio" style="max-width: 100%; border-radius: 5px; margin-top: 10px;" /> <!-- Substitua 'sua-imagem.jpg' pela URL da sua imagem -->
+        <img src="sua-imagem.jpg" alt="Imagem do Sorteio" style="max-width: 100%; border-radius: 5px; margin-top: 10px;" /> <!-- Substitua 'sua-imagem.jpg' pela URL da sua imagem -->
         <p class="mensagem-imagem">Esta é a imagem do sorteio da torta salgada!</p> <!-- Mensagem abaixo da imagem -->
     </div>
 
     <div class="pix-info" id="pix-info">
-        <p id="chave-pix" style="color: #28a745; font-weight: bold;"></p> <!-- Exibe a chave PIX em verde e negrito -->
-        <p style="color: #dc3545;">Por favor, utilize a chave acima para realizar o pagamento.</p> <!-- Mensagem em vermelho -->
+        <p id="chave-pix"></p> <!-- Exibe a chave PIX -->
         <button class="copy-button" onclick="copiarChavePix()">Copiar Chave PIX</button> <!-- Botão para copiar a chave PIX -->
+        <p id="mensagem-pix"></p> <!-- Mensagem sobre o pagamento -->
         
         <!-- Botão do WhatsApp -->
         <button class="whatsapp-button" onclick="irParaWhatsApp()">Contate-nos no WhatsApp</button> <!-- Botão para contatar via WhatsApp -->
