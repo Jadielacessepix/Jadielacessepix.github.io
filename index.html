@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bate-papodeconversa</title>
-    <script type="module" src="script.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,20 +15,93 @@
             font-size: 16px;
             cursor: pointer;
         }
+        #user-info {
+            margin-top: 20px;
+        }
+        #user-info img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
     </style>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDGv_8JszhIi8UWFl7T-lLdJ7aiavY4Chk",
+            authDomain: "chatdeconversa-d7157.firebaseapp.com",
+            projectId: "chatdeconversa-d7157",
+            storageBucket: "chatdeconversa-d7157.appspot.com",
+            messagingSenderId: "903498795104",
+            appId: "1:903498795104:web:ff596048061101702b5b05",
+            measurementId: "G-XVL479WP0Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // Function to handle Google sign-in
+        window.login = function() {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log("Usuário logado: ", user);
+                })
+                .catch((error) => {
+                    console.error("Erro ao fazer login: ", error);
+                });
+        };
+
+        // Function to handle logout
+        window.logout = function() {
+            signOut(auth).then(() => {
+                console.log("Usuário deslogado.");
+            }).catch((error) => {
+                console.error("Erro ao deslogar: ", error);
+            });
+        };
+
+        // Monitorar o estado de autenticação
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("Usuário está logado: ", user);
+                // Atualizar a interface do usuário
+                document.getElementById("user-info").style.display = "block";
+                document.getElementById("login-area").style.display = "none";
+                
+                // Preencher as informações do usuário
+                document.getElementById("user-name").innerText = user.displayName; // Nome do usuário
+                document.getElementById("user-email").innerText = user.email; // Email do usuário
+                document.getElementById("user-photo").src = user.photoURL; // Foto do usuário
+            } else {
+                console.log("Usuário não está logado");
+                // Ocultar informações do usuário
+                document.getElementById("user-info").style.display = "none";
+                document.getElementById("login-area").style.display = "block";
+            }
+        });
+    </script>
 </head>
 <body>
     <h1>Bem-vindo ao Bate-papodeconversa!</h1>
-    <div id="user-info" style="display: none;">
-        <h2>Usuário Logado:</h2>
-        <p id="user-name"></p>
-        <button onclick="logout()">Sair</button>
-    </div>
+    
     <div id="login-area">
         <button onclick="login()">Entrar com Google</button>
     </div>
-    <script>
-        // O código JavaScript para autenticação com Firebase vai aqui
-    </script>
+    
+    <div id="user-info" style="display: none;">
+        <h2>Usuário Logado:</h2>
+        <img id="user-photo" src="" alt="Foto do Usuário" />
+        <p id="user-name"></p>
+        <p id="user-email"></p>
+        <button onclick="logout()">Sair</button>
+    </div>
 </body>
 </html>
