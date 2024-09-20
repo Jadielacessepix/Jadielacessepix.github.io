@@ -3,56 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal do Bot do Telegram</title>
+    <title>Painel de Venda de Bilhetes - Sorteio da Torta Salgada</title>
     <style>
+        /* Estilos gerais para o corpo da página */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif; /* Fonte padrão */
+            background-color: #f8f9fa; /* Cor de fundo clara */
+            margin: 0;
             padding: 20px;
         }
-        #terminal {
-            background-color: #222;
-            color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            height: 300px;
-            overflow-y: auto;
-            white-space: pre-wrap;
+
+        /* Estilo do container principal */
+        .container {
+            max-width: 600px; /* Largura máxima do container */
+            margin: auto; /* Centraliza o container */
+            background: white; /* Cor de fundo do container */
+            padding: 20px; /* Espaçamento interno */
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+            position: relative; /* Para posicionar as linhas laterais */
         }
-        input {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-top: 10px;
+
+        /* Estilo das linhas laterais */
+        .line-left, .line-right {
+            position: absolute;
+            top: 0; /* Alinhamento ao topo */
+            bottom: 0; /* Alinhamento à base */
+            width: 5px; /* Largura das linhas */
+            background-color: #04FF90; /* Cor das linhas laterais */
+        }
+        .line-left {
+            left: 0; /* Linha esquerda */
+        }
+        .line-right {
+            right: 0; /* Linha direita */
+        }
+
+        /* Estilo do título */
+        h1 {
+            text-align: center; /* Centraliza o texto */
+            color: #343a40; /* Cor escura para o título */
+        }
+
+        /* Estilo dos parágrafos */
+        p {
+            color: #495057; /* Cor dos parágrafos */
+        }
+
+        /* Estilo dos grupos de formulários */
+        .form-group {
+            margin-bottom: 15px; /* Espaçamento entre os grupos */
+        }
+
+        /* Estilo dos rótulos */
+        label {
+            display: block; /* Cada rótulo ocupa uma linha */
+            margin-bottom: 5px; /* Espaçamento abaixo do rótulo */
+            color: #007bff; /* Cor azul para os rótulos */
+        }
+
+        /* Estilo dos campos de entrada */
+        input[type="text"], input[type="number"] {
+            width: 100%; /* Largura total */
+            padding: 10px; /* Espaçamento interno */
+            border: 1px solid #04FF84; /* Bordas cinzas */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+
+        /* Estilo dos botões */
+        button {
+            width: 100%; /* Largura total */
+            padding: 10px; /* Espaçamento interno */
+            background-color: #007bff; /* Cor azul para os botões */
+            color: white; /* Cor do texto dos botões */
+            border: none; /* Sem bordas */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+        }
+
+        /* Efeito ao passar o mouse sobre os botões */
+        button:hover {
+            background-color: #0056b3; /* Cor do botão ao passar o mouse */
+        }
+
+        /* Estilo do total */
+        .total {
+            margin-top: 10px; /* Espaçamento acima */
+            font-weight: bold; /* Texto em negrito */
+            color: #28a745; /* Cor verde para o total */
+        }
+
+        /* Estilo para a seção de informações do PIX */
+        .pix-info {
+            margin-top: 20px; /* Espaçamento acima */
+            display: none; /* Oculto inicialmente */
+            padding: 10px; /* Espaçamento interno */
+            background-color: #e9ecef; /* Cor de fundo clara */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+
+        /* Estilo do botão de copiar chave PIX */
+        .copy-button {
+            margin-top: 10px; /* Espaçamento acima */
+            background-color: #007bff; /* Cor azul para o botão de copiar */
+        }
+
+        /* Estilo do botão do WhatsApp */
+        .whatsapp-button {
+            margin-top: 10px; /* Espaçamento acima */
+            background-color: #FF050B; /* Cor vermelha do WhatsApp */
+        }
+
+        /* Estilo da imagem */
+        .imagem-container {
+            display: none; /* Oculto inicialmente */
+            margin-top: 20px; /* Espaçamento em cima da imagem */
+            text-align: center; /* Centraliza a imagem */
+        }
+
+        /* Estilo da mensagem abaixo da imagem */
+        .mensagem-imagem {
+            color: #dc3545; /* Cor vermelha para a mensagem */
+            font-weight: bold; /* Texto em negrito */
+            margin-top: 10px; /* Espaçamento acima da mensagem */
         }
     </style>
+    <script>
+        const valorBilhete = 2.50; // Valor fixo do bilhete
+
+        // Função para atualizar o total com base na quantidade de bilhetes
+        function atualizarTotal() {
+            const quantidade = document.getElementById('quantidade').value; // Obtém a quantidade de bilhetes
+            const total = (quantidade * valorBilhete).toFixed(2); // Calcula o total
+            document.getElementById('valor-total').innerText = `Total: R$ ${total}`; // Atualiza o texto do total
+        }
+
+        // Função para processar a compra do bilhete
+        function comprarBilhete() {
+            const nome = document.getElementById('nome').value; // Obtém o nome do usuário
+            const email = document.getElementById('email').value; // Obtém o e-mail do usuário
+            const telefone = document.getElementById('telefone').value; // Obtém o telefone do usuário
+
+            // Validação dos campos obrigatórios
+            if (!nome || !email || !telefone) {
+                alert("Por favor, preencha todos os campos obrigatórios."); // Alerta se algum campo estiver vazio
+                return; // Interrompe a função
+            }
+
+            const chavePix = 'b4b6e8bb-581b-49da-8db3-0c66c1c61ab6'; // Chave PIX para pagamento
+            const quantidade = document.getElementById('quantidade').value; // Obtém a quantidade de bilhetes
+            const total = (quantidade * valorBilhete).toFixed(2); // Calcula o total
+            
+            // Exibe a chave PIX e a mensagem de pagamento
+            document.getElementById('chave-pix').innerText = `CHAVE PIX: ${chavePix}`;
+            document.getElementById('mensagem-pix').innerText = "Por favor, utilize a chave acima para realizar o pagamento.";
+            document.getElementById('pix-info').style.display = 'block'; // Mostra a seção de informações do PIX
+
+            // Atualiza o total no painel
+            document.getElementById('valor-total').innerText = `Total: R$ ${total}`;
+        }
+
+        // Função para copiar a chave PIX para a área de transferência
+        function copiarChavePix() {
+            const chavePix = document.getElementById('chave-pix').innerText.replace('CHAVE PIX: ', ''); // Obtém a chave PIX
+            navigator.clipboard.writeText(chavePix).then(() => {
+                alert('Chave PIX copiada para a área de transferência!'); // Alerta de sucesso
+            }).catch(err => {
+                alert('Erro ao copiar a chave PIX: ', err); // Alerta de erro
+            });
+        }
+
+        // Função para redirecionar para o WhatsApp
+        function irParaWhatsApp() {
+            const numeroWhatsApp = '77646677'; // Substitua pelo seu número de WhatsApp
+            const mensagem = 'Olá, gostaria de mais informações sobre o sorteio da torta salgada!'; // Mensagem padrão
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensagem)}`; // URL do WhatsApp com a mensagem
+            window.open(urlWhatsApp, '_blank'); // Abre o WhatsApp em uma nova aba
+        }
+
+        // Função para mostrar a imagem
+        function mostrarImagem() {
+            const imagemContainer = document.getElementById('imagem-container'); // Obtém o container da imagem
+            imagemContainer.style.display = 'block'; // Exibe o container da imagem
+        }
+    </script>
 </head>
 <body>
-    <h1>Terminal do Bot do Telegram</h1>
-    <div id="terminal"></div>
-    <input type="text" id="commandInput" placeholder="Digite seu comando"/>
-    <script>
-        const terminal = document.getElementById('terminal');
-        const commandInput = document.getElementById('commandInput');
 
-        commandInput.addEventListener('keypress', async function(event) {
-            if (event.key === 'Enter') {
-                const command = commandInput.value;
-                terminal.innerText += `> ${command}\n`;
-                commandInput.value = '';
+<div class="container">
+    <div class="line-left"></div>
+    <div class="line-right"></div>
+    <h1>SORTEIO DA TORTA SALGADA</h1>
+    <p><strong style="color: #dc3545;">Data:</strong> 29/09/2024</p> <!-- Cor vermelha para a data -->
+    <p><strong style="color: #dc3545;">Local:</strong> SANTA TEREZINHA/BA, CAMPO GRANDE</p> <!-- Cor vermelha para o local -->
+    <p><strong style="color: #dc3545;">Descrição:</strong> SORTEIO DO BILHETE DE UMA TORTA SALGADA. NÃO PERCA ESSA OPORTUNIDADE! VEM PARTICIPAR CONOSCO. VAI TER O CULTO A FESTIVIDADE DOS JOVENS. NÃO PERCA EM SANTA TEREZINHA/BA.</p>
+    
+    <h2 style="color: #007bff;">Compra de Bilhetes</h2> <!-- Cor azul para o subtítulo -->
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required>
+    </div>
+    <div class="form-group">
+        <label for="quantidade">Quantidade de Bilhetes:</label>
+        <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="20" required oninput="atualizarTotal()">
+    </div>
+    <div class="total" id="valor-total">Total: R$ 2,50</div> <!-- Total inicial -->
 
-                const response = await fetch('/send-command', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ command: command })
-                });
+    <button onclick="comprarBilhete()">Comprar Bilhete</button> <!-- Botão para comprar bilhete -->
+    
+    <!-- Botão para mostrar imagem com espaçamento acima -->
+    <button style="margin-top: 10px;" onclick="mostrarImagem()">Mostrar Imagem</button>
+    
+    <div class="imagem-container" id="imagem-container">
+        <img src="bilhete.png" alt="Imagem do Sorteio" style="max-width: 100%; border-radius: 5px; margin-top: 10px;" /> <!-- Substitua 'sua-imagem.jpg' pela URL da sua imagem -->
+        <p class="mensagem-imagem">Esta é a imagem do sorteio da torta salgada!</p> <!-- Mensagem abaixo da imagem -->
+    </div>
 
-                const data = await response.json();
-                terminal.innerText += `Bot: ${data.message}\n`;
-                terminal.scrollTop = terminal.scrollHeight; // Rolagem automática
-            }
-        });
-    </script>
+    <div class="pix-info" id="pix-info">
+        <p id="chave-pix" style="color: #28a745; font-weight: bold;"></p> <!-- Exibe a chave PIX em verde e negrito -->
+        <p style="color: #dc3545;">Por favor, utilize a chave acima para realizar o pagamento.</p> <!-- Mensagem em vermelho -->
+        <button class="copy-button" onclick="copiarChavePix()">Copiar Chave PIX</button> <!-- Botão para copiar a chave PIX -->
+        
+        <!-- Botão do WhatsApp -->
+        <button class="whatsapp-button" onclick="irParaWhatsApp()">Contate-nos no WhatsApp</button> <!-- Botão para contatar via WhatsApp -->
+    </div>
+</div>
+
 </body>
 </html>
